@@ -1,3 +1,5 @@
+// https://codeforces.com/problemset/problem/1907/B
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -12,40 +14,45 @@ int main()
     {
         string s;
         cin >> s;
-        string res;
+
         vector<int> rUpIndex, rLowIndex;
+        vector<bool> ok(s.size(), true);
 
         for (int i = 0; i < s.size(); i++)
         {
-            if (s[i] != 'B' && s[i] != 'b')
+            if (s[i] == 'b')
             {
-                res.push_back(s[i]);
-                if (isupper(s[i]))
-                    rUpIndex.push_back(res.size() - 1);
-                else if (islower(s[i]))
-                    rLowIndex.push_back(res.size() - 1);
+                if (!rLowIndex.empty())
+                {
+                    ok[rLowIndex.back()] = false;
+                    rLowIndex.pop_back();
+                }
+                ok[i] = false;
             }
-            else if (s[i] == 'b' && !rLowIndex.empty())
+            else if (s[i] == 'B')
             {
-                res.erase(rLowIndex.back(), 1);
-                rLowIndex.pop_back();
-                if (!rUpIndex.empty() && !res.empty() && res.size() == rUpIndex.back())
-                    rUpIndex.back()--;
-                if (rUpIndex.size() >= 2 && rUpIndex.back() == rUpIndex[rUpIndex.size() - 2])
-                    rUpIndex[rUpIndex.size() - 2] = rUpIndex.back() - 1;
+                if (!rUpIndex.empty())
+                {
+                    ok[rUpIndex.back()] = false;
+                    rUpIndex.pop_back();
+                }
+                ok[i] = false;
             }
-            else if (s[i] == 'B' && !rUpIndex.empty())
-            {
-                res.erase(rUpIndex.back(), 1);
-                rUpIndex.pop_back();
-                if (!rLowIndex.empty() && !res.empty() && res.size() == rLowIndex.back())
-                    rLowIndex.back()--;
-                if (rLowIndex.size() >= 2 && rLowIndex.back() == rLowIndex[rLowIndex.size() - 2])
-                    rLowIndex[rLowIndex.size() - 2] = rLowIndex.back() - 1;
-            }
+            else if (isupper(s[i]))
+                rUpIndex.push_back(i);
+
+            else if (islower(s[i]))
+                rLowIndex.push_back(i);
         }
 
-        cout << res << '\n';
+        for (int i = 0; i < s.size(); i++)
+        {
+            if (ok[i])
+            {
+                cout << s[i];
+            }
+        }
+        cout << '\n';
     }
 
     return 0;

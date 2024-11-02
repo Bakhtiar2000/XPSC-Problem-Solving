@@ -10,26 +10,27 @@ int main()
 
     int n;
     cin >> n;
-    vector<string> s;
+    map<string, int> mp;
+    map<int, string> mp2;
     for (int i = 0; i < n; i++)
     {
         string x;
         cin >> x;
-        auto it = find(s.begin(), s.end(), x);
-        if (it != s.end())
-        {
-            s.erase(it);
-            s.push_back(x);
-        }
-        else
-            s.push_back(x);
+        mp[x] = i;
+        mp2[i] = x;
     }
-    for (int i = s.size() - 1; i >= 0; i--)
+
+    vector<int> v;
+    for (auto [name, order] : mp)
     {
-        cout << s[i] << '\n';
+        v.push_back(order);
+    }
+
+    sort(v.begin(), v.end());
+    for (int i = v.size() - 1; i >= 0; i--)
+    {
+        cout << mp2[v[i]] << '\n';
     }
 
     return 0;
 }
-
-// Could not

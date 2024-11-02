@@ -3,56 +3,50 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int typing_time(const string &s)
-{
-    int time = 2;
-
-    for (size_t i = 1; i < s.size(); ++i)
-    {
-        if (s[i] == s[i - 1])
-        {
-            time += 1;
-        }
-        else
-        {
-            time += 2;
-        }
-    }
-
-    return time;
-}
-
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    int tt;
+    cin >> tt;
 
-    int n;
-    cin >> n;
-    while (n--)
+    while (tt--)
     {
         string s;
         cin >> s;
-        int max_time = 0;
-        string best_password;
-        for (char c = 'a'; c <= 'z'; ++c)
+
+        bool ok = false;
+        int n = s.size();
+
+        for (int i = 0; i < n - 1; i++)
         {
-            for (size_t i = 0; i <= s.size(); ++i)
+            cout << s[i];
+
+            if (s[i] == s[i + 1] && !ok)
             {
-                string new_password = s.substr(0, i) + c + s.substr(i);
-                int time = typing_time(new_password);
-                if (time > max_time)
+                if (s[i] != 'z')
                 {
-                    max_time = time;
-                    best_password = new_password;
+                    cout << char(s[i] + 1);
                 }
+                else
+                {
+                    cout << 'a';
+                }
+                ok = true;
             }
         }
 
-        cout << best_password << endl;
+        if (ok)
+        {
+            cout << s[n - 1] << endl;
+        }
+        else if (!ok && s[n - 1] != 'z')
+        {
+            cout << s[n - 1] << char(s[n - 1] + 1) << endl;
+        }
+        else if (!ok)
+        {
+            cout << s[n - 1] << 'a' << endl;
+        }
     }
 
     return 0;
 }
-
-// Could not

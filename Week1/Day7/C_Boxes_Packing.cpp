@@ -1,3 +1,5 @@
+// https://codeforces.com/contest/903/problem/C
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -14,22 +16,14 @@ int main()
     for (int i = 0; i < n; i++)
     {
         cin >> v[i];
+        res[v[i]]++;
     }
 
-    for (int i = 0; i < v.size(); i++)
-    {
-        if (res.find(v[i]) != res.end())
-        {
-            res[v[i]]++;
-        }
-        else
-            res[v[i]] = 1;
-    }
     int max = 1;
     for (auto [x, y] : res)
     {
         if (y > max)
-            max += y - 1;
+            max = y;
     }
     cout << max << '\n';
 
