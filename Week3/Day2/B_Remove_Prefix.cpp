@@ -1,4 +1,4 @@
-// https://www.codechef.com/problems/MNR
+// https://codeforces.com/problemset/problem/1714/B
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -17,20 +17,20 @@ int main()
         cin >> n;
         vector<int> v(n);
         for (int i = 0; i < n; i++)
-        {
             cin >> v[i];
-        }
-        if (n <= 3)
-        {
-            cout << 0 << '\n';
-            continue;
-        }
-        sort(v.begin(), v.end());
-        int option1 = v[n - 1] - v[2];
-        int option2 = v[n - 2] - v[1];
-        int option3 = v[n - 3] - v[0];
+        set<int> values;
 
-        cout << min({option1, option2, option3}) << '\n';
+        for (int i = n - 1; i >= 0; i--)
+        {
+            if (values.count(v[i]))
+            {
+                cout << i + 1 << endl;
+                break;
+            }
+            values.insert(v[i]);
+        }
+        if (values.size() == n)
+            cout << 0 << endl;
     }
 
     return 0;
