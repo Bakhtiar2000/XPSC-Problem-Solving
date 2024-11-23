@@ -1,0 +1,1 @@
+{"name":"Local: B_Segment_with_Big_Sum","url":"f:\\Phitron\\XPSC\\Week4\\Day5\\B_Segment_with_Big_Sum.cpp","tests":[{"id":1732364336011,"input":"7 20\n2 6 4 3 6 8 9\n","output":"3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"f:\\Phitron\\XPSC\\Week4\\Day5\\B_Segment_with_Big_Sum.cpp","group":"local","local":true}

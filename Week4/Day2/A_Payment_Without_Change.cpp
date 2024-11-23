@@ -15,6 +15,10 @@ int main()
     {
         int a, b, n, s;
         cin >> a >> b >> n >> s;
+        long long max_coins = min(a, s / n);
+        long long remaining = s - (max_coins * n);
+
+        remaining <= b ? cout << "YES" << endl : cout << "NO" << endl;
     }
 
     return 0;
