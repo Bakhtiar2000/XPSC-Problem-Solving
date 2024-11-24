@@ -1,7 +1,8 @@
-// https://codeforces.com/edu/course/2/lesson/9/2/practice/contest/307093/problem/A
+// https://codeforces.com/edu/course/2/lesson/9/2/practice/contest/307093/problem/D
 
 #include <bits/stdc++.h>
 using namespace std;
+#define ll long long int
 
 int main()
 {
@@ -9,26 +10,24 @@ int main()
     cin.tie(nullptr);
 
     int n;
-    long long k;
+    ll k;
     cin >> n >> k;
     vector<int> a(n);
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
     }
-
-    int l = 0, r = 0, ans = 0;
-    long long sum = 0;
+    int l = 0, r = 0;
+    ll sum = 0, ans = 0;
     while (r < n)
     {
         sum += a[r];
-        if (sum <= k)
-            ans = max(ans, r - l + 1);
-        else
+        while (sum >= k && l <= r)
         {
             sum -= a[l];
             l++;
         }
+        ans += l;
         r++;
     }
 
