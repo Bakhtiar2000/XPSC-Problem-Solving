@@ -5,12 +5,9 @@ using namespace std;
 #define ll long long
 int main()
 {
-
     ll t, n, i, j, sm, la, m, c;
-
     cin >> t;
-
-    for (; t--;)
+    while (t--)
     {
         cin >> n;
         m = n * n;
