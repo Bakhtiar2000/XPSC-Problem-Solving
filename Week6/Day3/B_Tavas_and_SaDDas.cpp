@@ -15,8 +15,9 @@ int main()
     ll len = n.size();
     ll cnt = 0;
 
+    // This loop adds up all lucky numbers of lengths smaller than len
     for (int i = 1; i < len; i++)
-        cnt += (1LL << i);
+        cnt += (1LL << i); // 2^1 + 2^2 + 2^3 + ...
 
     for (int i = 0; i < len; i++)
     {
