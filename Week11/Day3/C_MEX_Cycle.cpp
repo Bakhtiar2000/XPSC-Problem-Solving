@@ -4,6 +4,11 @@
 using namespace std;
 #define ll long long int
 
+bool check(int a, int b)
+{
+    return abs(a - b) % 2;
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
@@ -11,6 +16,7 @@ int main()
 
     int t;
     cin >> t;
+
     while (t--)
     {
         int n, x, y;
@@ -21,13 +27,12 @@ int main()
         for (int i = 0; i < n; i++)
             v[(x + i) % n] = i % 2;
 
-        if (n % 2 != 0 || !abs(x - y) % 2)
+        if (n % 2 != 0 || !check(x, y))
             v[x] = 2;
 
         for (auto i : v)
             cout << i << " ";
         cout << endl;
     }
-
     return 0;
 }
